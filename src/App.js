@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
-function App() {
+import Home from './pages/Home/Home';
+import NewTeacher from './pages/NewTeacher/NewTeacher';
+import UploadFile from './pages/UploadFile/UploadFile';
+import Login from './pages/Login/Login';
+import Teacher from './pages/Teacher/Teacher';
+import EditStudent from './pages/EditStudent/EditStudent';
+import AdminStudents from "./pages/AdminStudents/AdminStudents";
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router> 
+        <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+          <Route exact path="/admin">
+            <Home />
+          </Route>
+          <Route exact path="/agregar-docente">
+            <NewTeacher />
+          </Route>
+          <Route exact path="/subir-archivo">
+            <UploadFile />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+           <Route exact path="/teacher">
+            <Teacher />
+          </Route>
+          <Route exact path="/editar-student/:id" component={EditStudent}>
+          </Route>
+           <Route exact path="/admin/estudiantes">
+            <AdminStudents />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
-
-export default App;
